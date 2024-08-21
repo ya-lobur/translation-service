@@ -9,6 +9,8 @@ package-mode = false
 [tool.poetry.dependencies]
 python = "~3.11"
 fastapi = { extras = ["all"], version = "^0.112.1" }
+googletrans-py = "4.0.0"
+
 
 
 [tool.poetry.group.dev.dependencies]
@@ -42,6 +44,8 @@ extend-select = ["F", "E", "W", "PL", "Q", "SIM", "TID", "TCH", "FURB", "T20", "
 preview = true
 ignore = [
   "PLC0415",
+  "PLR0913",
+  "PLR0917"
 ]
 fixable = ["ALL"]
 unfixable = []
