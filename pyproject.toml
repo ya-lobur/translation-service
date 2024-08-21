@@ -45,7 +45,8 @@ preview = true
 ignore = [
   "PLC0415",
   "PLR0913",
-  "PLR0917"
+  "PLR0917",
+  "ANN401"
 ]
 fixable = ["ALL"]
 unfixable = []
