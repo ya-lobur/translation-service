@@ -14,6 +14,6 @@ class WordDetails(BaseModel):
     translation_details: TranslationDetails | list[TranslationDetails]
 
 
-class Wordlist(BaseModel):
-    words: list[str]
+class WordList(BaseModel):
+    words: list[WordDetails]
     total: int
