@@ -11,4 +11,5 @@ class Translation(BaseModel):
 
 class Word(BaseModel):
     word: str = Field(..., alias='_id')
+    original_language: str
     translations: list[Translation]

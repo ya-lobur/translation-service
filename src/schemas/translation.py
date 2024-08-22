@@ -11,6 +11,7 @@ class TranslationDetails(BaseModel):
 
 class WordDetails(BaseModel):
     word: str
+    original_language: str
     translation_details: TranslationDetails | list[TranslationDetails]
 
 
