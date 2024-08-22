@@ -26,6 +26,8 @@ class WebApp(BaseWebApp):
         pass
 
 
+web_app = WebApp()
+
 __all__ = [
-    'WebApp',
+    'web_app',
 ]
