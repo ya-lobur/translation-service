@@ -25,7 +25,7 @@ def make_log_config(debug: bool) -> dict[str, Any]:
         config['loggers'] = {
             '': {
                 'handlers': ['console'],
-                'level': 'WARNING',
+                'level': 'DEBUG',
             }
         }
     else:
