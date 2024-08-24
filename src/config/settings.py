@@ -19,6 +19,7 @@ class AppSettings(BaseSettings):
     PORT: int = defaults.PORT
 
     MONGO_DSN: MongoDsn = defaults.MONGO_DSN
+    MONGO_DB_NAME: str = defaults.MONGO_DB_NAME
 
     model_config = SettingsConfigDict(env_file=('.env.template', '.env'), extra='ignore')
 

@@ -13,3 +13,4 @@ SWAGGER_URL = '/swagger'
 REDOC_URL = '/redoc'
 
 MONGO_DSN = MongoDsn('mongodb://localhost:27017')
+MONGO_DB_NAME = 'translation_service'

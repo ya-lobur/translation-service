@@ -23,7 +23,7 @@ class ResourceContainer:
             self.mongodb_client: AsyncIOMotorClient[Mapping[str, Any]] = AsyncIOMotorClient(
                 settings.MONGO_DSN.unicode_string()
             )
-            self.mongodb: AsyncIOMotorDatabase[Mapping[str, Any]] = self.mongodb_client['word_service']
+            self.mongodb: AsyncIOMotorDatabase[Mapping[str, Any]] = self.mongodb_client[settings.MONGO_DB_NAME]
         logger.info('Container is set up.')
 
     async def cleanup(self) -> None:
