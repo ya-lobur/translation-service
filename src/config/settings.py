@@ -9,7 +9,9 @@ from src.config.log import make_log_config
 class AppSettings(BaseSettings):
     DEBUG: bool = defaults.DEBUG
     ENVIRONMENT: str = defaults.ENVIRONMENT
+
     ROOT_PATH: str = defaults.ROOT_PATH
+
     SERVICE_NAME: str = defaults.SERVICE_NAME
     SERVICE_VERSION: str = defaults.SERVICE_VERSION
     HOST: str = defaults.HOST
