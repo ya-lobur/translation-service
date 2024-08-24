@@ -21,7 +21,17 @@ class TranslationClientError(TranslationBaseError):
     pass
 
 
+class TranslationParseError(TranslationBaseError):
+    pass
+
+
+class TranslationServiceError(TranslationBaseError):
+    pass
+
+
 __all__ = [
     'TranslationBaseError',
-    'TranslationClientError'
+    'TranslationClientError',
+    'TranslationParseError',
+    'TranslationServiceError',
 ]

@@ -3,6 +3,7 @@ from typing import Any
 from googletrans.models import Translated
 from more_itertools import first
 
+from src.exceptions.translation import TranslationParseError
 from src.models.translation import PartOfSpeechAndSamples, Translation, Word
 
 
@@ -66,13 +67,16 @@ class GoogleTranslateApiDataParser:
 
     @classmethod
     def parse(cls, data: Translated) -> Word:
-        word_translation = Translation(
-            language=data.dest,
-            definitions=cls._extract_definitions(data),
-            synonyms=cls._extract_synonyms(data),
-            possible_translations=cls._extract_possible_translations(data),
-            examples=cls._extract_examples(data),
-        )
+        try:
+            word_translation = Translation(
+                language=data.dest,
+                definitions=cls._extract_definitions(data),
+                synonyms=cls._extract_synonyms(data),
+                possible_translations=cls._extract_possible_translations(data),
+                examples=cls._extract_examples(data),
+            )
+        except Exception:
+            raise TranslationParseError('Cannot parse the translation')
 
         return Word(_id=data.origin, original_language=data.src, translations=[word_translation])
 

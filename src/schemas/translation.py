@@ -1,18 +1,12 @@
 from pydantic import BaseModel
 
-
-class TranslationDetails(BaseModel):
-    language: str
-    definitions: list[str] = []
-    synonyms: list[str] = []
-    translations: list[str] = []
-    examples: list[str] = []
+from src.models.translation import Translation
 
 
 class WordDetails(BaseModel):
     word: str
     original_language: str
-    translation_details: TranslationDetails | list[TranslationDetails]
+    translation_details: Translation | list[Translation]
 
 
 class WordList(BaseModel):

@@ -40,8 +40,8 @@ class TranslationClient:
                 dest=dest,
                 src=src
             )
-        except Exception as e:
-            raise TranslationClientError(message=str(e))
+        except Exception:
+            raise TranslationClientError(message='Some Google API issue occurred')
 
         return result
 

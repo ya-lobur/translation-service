@@ -1,3 +1,4 @@
+import logging
 from typing import Any, Mapping, Self
 
 from motor.motor_asyncio import AsyncIOMotorCollection, AsyncIOMotorDatabase
@@ -5,6 +6,8 @@ from pymongo.results import InsertOneResult, UpdateResult
 
 from src.dependencies.resources import container
 from src.models.translation import Word
+
+logger = logging.getLogger(__name__)
 
 
 class WordsRepository:
@@ -29,7 +32,8 @@ class WordsRepository:
             return model_word
         return None
 
-    async def add_word(self, word_data: Word) -> InsertOneResult | UpdateResult:
+    async def upsert_word(self, word_data: Word) -> InsertOneResult | UpdateResult:
+        logger.debug(f'Trying to upsert word "{word_data.word}"')
         existing_word = await self._collection.find_one({'_id': word_data.word})
         result: InsertOneResult | UpdateResult
 
@@ -46,7 +50,7 @@ class WordsRepository:
             )
         else:
             result = await self._collection.insert_one(word_data.model_dump(by_alias=True))
-
+        logger.debug(f'"{word_data.word}" has been upserted')
         return result
 
     @classmethod
@@ -54,3 +58,8 @@ class WordsRepository:
         if cls._instance is None:
             cls._instance = cls(container.mongodb)
         return cls._instance
+
+
+__all__ = [
+    'WordsRepository'
+]

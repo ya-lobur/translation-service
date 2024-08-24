@@ -4,6 +4,7 @@ from typing import TYPE_CHECKING, Any
 
 from motor.motor_asyncio import AsyncIOMotorClient, AsyncIOMotorDatabase
 
+from src.clients import TranslationClient
 from src.config import settings
 
 if TYPE_CHECKING:
@@ -24,6 +25,7 @@ class ResourceContainer:
                 settings.MONGO_DSN.unicode_string()
             )
             self.mongodb: AsyncIOMotorDatabase[Mapping[str, Any]] = self.mongodb_client[settings.MONGO_DB_NAME]
+            self.translation_client = TranslationClient()
         logger.info('Container is set up.')
 
     async def cleanup(self) -> None:
