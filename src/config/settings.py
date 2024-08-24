@@ -1,5 +1,6 @@
 from typing import Any
 
+from pydantic import MongoDsn
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 from src.config import defaults
@@ -16,6 +17,8 @@ class AppSettings(BaseSettings):
     SERVICE_VERSION: str = defaults.SERVICE_VERSION
     HOST: str = defaults.HOST
     PORT: int = defaults.PORT
+
+    MONGO_DSN: MongoDsn = defaults.MONGO_DSN
 
     model_config = SettingsConfigDict(env_file=('.env.template', '.env'), extra='ignore')
 

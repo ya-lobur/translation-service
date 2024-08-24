@@ -1,9 +1,14 @@
+import logging
+
 from fastapi import FastAPI
 from fastapi.responses import ORJSONResponse
 
 from src.config import settings
+from src.dependencies.resources import container
 from src.endpoint.routers import setup_routes
 from src.lib.web_app import BaseWebApp
+
+logger = logging.getLogger(__name__)
 
 
 class WebApp(BaseWebApp):
@@ -17,13 +22,19 @@ class WebApp(BaseWebApp):
     REDOC_URL = settings.REDOC_URL
 
     def configure(self, app: FastAPI) -> None:  # noqa: PLR6301
+        logger.info('App is configuring...')
         setup_routes(app)
+        logger.info('App is configured.')
 
-    async def setup(self, app: FastAPI) -> None:
-        pass
+    async def setup(self, app: FastAPI) -> None:  # noqa: PLR6301
+        logger.info('App setting up...')
+        await container.setup()
+        logger.info('App is set up.')
 
-    async def shutdown(self, app: FastAPI) -> None:
-        pass
+    async def shutdown(self, app: FastAPI) -> None:  # noqa: PLR6301
+        logger.info('App shutting down...')
+        await container.cleanup()
+        logger.info('App is shut down.')
 
 
 web_app = WebApp()

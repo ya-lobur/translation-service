@@ -11,6 +11,7 @@ python = "~3.11"
 fastapi = { extras = ["all"], version = "^0.112.1" }
 googletrans-py = "4.0.0"
 more-itertools = "~10.4.0"
+motor = "~3.5.1"
 
 
 

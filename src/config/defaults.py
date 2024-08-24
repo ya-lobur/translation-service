@@ -1,3 +1,5 @@
+from pydantic import MongoDsn
+
 DEBUG = True
 ENVIRONMENT = 'DEV'
 
@@ -9,3 +11,5 @@ PORT = 8000
 
 SWAGGER_URL = '/swagger'
 REDOC_URL = '/redoc'
+
+MONGO_DSN = MongoDsn('mongodb://localhost:27017')
