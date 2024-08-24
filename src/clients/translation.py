@@ -41,3 +41,8 @@ class TranslationClient:
             raise TranslationClientError(message=str(e))
 
         return result
+
+
+__all__ = [
+    'TranslationClient'
+]

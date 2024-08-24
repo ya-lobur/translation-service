@@ -13,3 +13,9 @@ class TranslationBaseError(Exception):
 
 class TranslationClientError(TranslationBaseError):
     pass
+
+
+__all__ = [
+    'TranslationBaseError',
+    'TranslationClientError'
+]
