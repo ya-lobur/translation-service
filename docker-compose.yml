@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "8000:8000"
+    command: [ "poetry", "run", "python", "manage.py" ]
+    depends_on:
+      - mongo
+
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: mongo
+      MONGO_INITDB_ROOT_PASSWORD: mongo
+
+
+volumes:
+  mongo_data:
