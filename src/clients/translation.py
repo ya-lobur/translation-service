@@ -1,4 +1,5 @@
 import asyncio
+from typing import Any
 
 import httpcore
 from googletrans import Translator
@@ -16,12 +17,14 @@ class TranslationClient:
         raise_exception: bool = True,
         proxies: dict[str, httpcore._sync.interfaces.RequestInterface] | None = None,
         timeout: Timeout | None = None,
+        **kwargs: Any,
     ) -> None:
         self._client = Translator(
             service_urls=service_urls or DEFAULT_SERVICE_URLS,
             raise_exception=raise_exception,
             proxies=proxies,
-            timeout=timeout
+            timeout=timeout,
+            **kwargs,
         )
 
     async def translate_word(

@@ -7,6 +7,8 @@ from src.models.translation import PartOfSpeechAndSamples, Translation, Word
 
 
 class GoogleTranslateApiDataParser:
+    __slots__ = ()
+
     @staticmethod
     def _extract_definitions(data: Translated) -> list[PartOfSpeechAndSamples]:
         definitions = []
