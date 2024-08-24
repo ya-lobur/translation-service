@@ -1,0 +1,85 @@
+[tool.poetry]
+name = "translation-service"
+version = "0.1.0"
+description = "Translation Service Challenge"
+authors = ["yalobur <leek17548@gmail.com>"]
+readme = "README.md"
+package-mode = false
+
+[tool.poetry.dependencies]
+python = "~3.11"
+fastapi = { extras = ["all"], version = "^0.112.1" }
+googletrans-py = "4.0.0"
+more-itertools = "~10.4.0"
+motor = "~3.5.1"
+
+
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.6.1"
+mypy = "^1.11.1"
+pre-commit = "^3.8.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+# ruff
+[tool.ruff]
+exclude = [
+  ".git",
+  "__pycache__",
+  ".venv/*",
+  "*.pyc",
+  ".mypy_cache",
+  ".pytest_cache",
+]
+line-length = 120
+indent-width = 4
+force-exclude = true
+show-fixes = true
+output-format = "full"
+target-version = "py311"
+
+[tool.ruff.lint]
+extend-select = ["F", "E", "W", "PL", "Q", "SIM", "TID", "TCH", "FURB", "T20", "ANN", "I"]
+preview = true
+ignore = [
+  "PLC0415",
+  "PLR0913",
+  "PLR0917",
+  "ANN401"
+]
+fixable = ["ALL"]
+unfixable = []
+
+[tool.ruff.format]
+line-ending = "auto"
+quote-style = "single"
+indent-style = "space"
+skip-magic-trailing-comma = false
+
+[tool.ruff.lint.flake8-tidy-imports]
+ban-relative-imports = "all"
+
+[tool.ruff.lint.flake8-quotes]
+inline-quotes = "single"
+
+# mypy
+[tool.mypy]
+python_version = "3.11"
+ignore_missing_imports = true
+plugins = ["pydantic.mypy"]
+follow_imports = "silent"
+warn_redundant_casts = true
+warn_unused_ignores = true
+disallow_any_generics = true
+check_untyped_defs = true
+no_implicit_reexport = true
+strict_optional = true
+
+[tool.pydantic-mypy]
+init_forbid_extra = true
+init_typed = true
+warn_required_dynamic_aliases = true
+warn_untyped_fields = true
