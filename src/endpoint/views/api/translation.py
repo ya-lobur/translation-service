@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 async def get_word_translation(
     service: Annotated[TranslationService, Depends(TranslationService.get_instance)],
     word: Annotated[str, Path(description='The word you want to translate')],
-    dest_language: Annotated[str, Query(description='The destination language code', example='`en`')],
+    dest_language: Annotated[str, Query(description='The destination language code', example='en')],
     src_language: Annotated[str, Query(description='The source language code (`auto` for auto detection)')] = 'auto',
 ) -> WordDetails:
     """Get the details about the given word."""
