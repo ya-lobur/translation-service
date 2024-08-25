@@ -3,6 +3,7 @@ from typing import Self, Type
 
 from src.clients import TranslationClient
 from src.dependencies.resources import container
+from src.enums.translations import WordsExpandEnum, WordsSortKeysEnum
 from src.exceptions.translation import TranslationClientError, TranslationParseError, TranslationServiceError
 from src.models.translation import Word
 from src.repositories.words import WordsRepository
@@ -58,6 +59,22 @@ class TranslationService:
             result = existing_word
 
         return result
+
+    async def get_words(
+        self,
+        skip: int = 0,
+        limit: int = 10,
+        word_filter: str | None = None,
+        sort_by: WordsSortKeysEnum | None = None,
+        expands: list[WordsExpandEnum] | None = None,
+    ) -> list[Word]:
+        return await self._word_crud.get_words(
+            skip=skip,
+            limit=limit,
+            word_filter=word_filter,
+            sort_by=sort_by,
+            expands=expands
+        )
 
     @classmethod
     def get_instance(cls) -> Self:
