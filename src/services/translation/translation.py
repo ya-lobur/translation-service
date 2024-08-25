@@ -34,8 +34,8 @@ class TranslationService:
     async def get_word_translation(
         self,
         word: str,
-        dest_language: str,  # todo: validation
-        src_language: str = 'auto',  # todo: validation
+        dest_language: str,
+        src_language: str = 'auto',
     ) -> Word:
         result: Word
         existing_word = await self._word_crud.get_word(word, language=dest_language)
