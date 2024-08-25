@@ -40,22 +40,30 @@ async def get_word_translation(
 
 
 @router.delete('/word/{word}')
-async def delete_word(word: str) -> WordDetails:  # type: ignore
+async def delete_word(
+    service: Annotated[TranslationService, Depends(TranslationService.get_instance)],
+    word: str
+) -> WordDetails:
     """Delete a word from the database."""
+    result = await service.delete_word(word)
+    if not result:
+        raise HTTPException(status_code=404, detail='Word does not exist')
+
+    return WordDetails(
+        word=result.word,
+        original_language=result.original_language,
+        translation_details=result.translations,
+    )
 
 
 @router.get('/words/')
 async def get_words(
-    # todo: PLR0913
     service: Annotated[TranslationService, Depends(TranslationService.get_instance)],
-
     skip: int = 0,
     limit: int = 10,
-
     word_filter: str | None = None,
     sort_by: WordsSortKeysEnum | None = None,
     expands: Annotated[list[WordsExpandEnum] | None, Query()] = None,
-
 ) -> list[WordDetails]:
     """Get the list of the words stored in the database."""
     result = []

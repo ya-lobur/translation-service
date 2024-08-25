@@ -35,7 +35,7 @@ class TranslationService:
         self,
         word: str,
         dest_language: str,  # todo: validation
-        src_language: str = 'auto',  # todo: validation + auto
+        src_language: str = 'auto',  # todo: validation
     ) -> Word:
         result: Word
         existing_word = await self._word_crud.get_word(word, language=dest_language)
@@ -75,6 +75,9 @@ class TranslationService:
             sort_by=sort_by,
             expands=expands
         )
+
+    async def delete_word(self, word: str) -> Word | None:
+        return await self._word_crud.delete_word(word)
 
     @classmethod
     def get_instance(cls) -> Self:
