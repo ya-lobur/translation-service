@@ -23,6 +23,7 @@ your requests coming from this application (then you see `Some Google API issue 
 - Framework: FastAPI (async)
 - Database: MongoDB (NoSQL)
 - Containerization: Docker
+- Pre-commit hooks (ruff and mypy)
 
 ## Setup Instructions
 
@@ -46,7 +47,7 @@ git clone https://github.com/ya-lobur/translation-service.git
 Build and run the application using Docker Compose:
 
 ```shell
-docker-compose up --build
+docker-compose up -d --build
 ```
 
 This will start both the FastAPI service and MongoDB in Docker containers.
