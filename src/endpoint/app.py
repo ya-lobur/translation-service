@@ -11,6 +11,7 @@ from src.lib.web_app import BaseWebApp
 logger = logging.getLogger(__name__)
 
 
+# todo: exception handlers
 class WebApp(BaseWebApp):
     APP_NAME = settings.SERVICE_NAME
     APP_VERSION = settings.SERVICE_VERSION

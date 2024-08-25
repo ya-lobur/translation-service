@@ -85,6 +85,10 @@ class WordsRepository:
 
         return [Word(**word) for word in words]
 
+    async def delete_word(self, word: str) -> Word | None:
+        word_data = await self._collection.find_one_and_delete({'_id': word})
+        return Word(**word_data) if word_data else None
+
     @classmethod
     def get_instance(cls) -> Self:
         if cls._instance is None:
