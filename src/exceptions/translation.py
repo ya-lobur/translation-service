@@ -25,6 +25,10 @@ class TranslationParseError(TranslationBaseError):
     pass
 
 
+class TranslationDbError(TranslationBaseError):
+    pass
+
+
 class TranslationServiceError(TranslationBaseError):
     pass
 
